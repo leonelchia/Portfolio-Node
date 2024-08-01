@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="../font/bootstrap-icons.css">
   <link rel="stylesheet" href="../css/bootstrap.min.css"/>
   <link href="../css/home/header.css" rel="stylesheet">
+  <link href="./css/services.css" rel="stylesheet">
 
 </head>
     
@@ -19,7 +20,18 @@
         <%- include('./partials/contact.ejs') %>
       </div>
       
-        <%- include('./partials/scripts.ejs') %>
+      <%- include('./partials/scripts.ejs') %>
+      <script>
+          var typed = new Typed(".aboutMe", {
+            strings: <%- JSON.stringify(array) %> ,
+            smartBackspace: true,
+            typeSpeed: 100,
+            backSpeed: 100,
+            loop: true,
+            loopCount: Infinity,
+            startDelay: 1000
+        });
+      </script>
       
     </body>
 </html>
