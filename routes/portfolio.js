@@ -5,6 +5,8 @@ var router = express.Router();
 const fs = require("fs");
 const path = require("path");
 var request = require('request');
+var ensureLogIn = require('connect-ensure-login').ensureLoggedIn;
+var ensureLoggedIn = ensureLogIn();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -32,7 +34,7 @@ var download = function(url, filename, callback){
     res.end();
   });
 
-  router.delete('/', jsonParser, function(req, res, next) {
+  router.delete('/', jsonParser, ensureLoggedIn,function(req, res, next) {
     let rawdata = fs.readFileSync(path.resolve(__dirname, "../data/portfolio.json"));
     let portfoliosArray = JSON.parse(rawdata);
     const newArray = portfoliosArray.filter(x => x.name !== req.body.name)
@@ -45,5 +47,6 @@ var download = function(url, filename, callback){
     res.end();
   });
 
+  
   
 module.exports = router;
